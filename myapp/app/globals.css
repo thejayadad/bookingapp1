@@ -5,3 +5,11 @@
 body{
   overflow-x: hidden;
 }
+/* styles/globals.css */
+.modal-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

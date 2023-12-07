@@ -1,21 +1,22 @@
 'use client'
+// Modal.js
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
-  return ReactDOM.createPortal(
-    <div className="modal-overlay">
-      <div className="modal">
-        <button className="text-orange-300 bg-red-300" onClick={onClose}>
+  return (
+    <div className="fixed inset-0 flex items-center justify-center">
+      <div className="fixed inset-0 bg-black opacity-50" onClick={onClose}></div>
+      <div className="z-10 bg-white p-8 rounded-lg">
+        <button className="absolute top-4 right-4 text-xl" onClick={onClose}>
           &times;
         </button>
         {children}
       </div>
-    </div>,
-    document.getElementById('modal-root') 
+    </div>
   );
 };
 
 export default Modal;
+

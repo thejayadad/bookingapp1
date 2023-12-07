@@ -1,52 +1,43 @@
 'use client'
+// AuthLinks.js
 import React, { useState } from 'react';
 import { FiUser } from 'react-icons/fi';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import Modal from '../Modal';
+import Register from '../UserSetup/Register';
+import Login from '../UserSetup/Login';
 
 const AuthLinks = () => {
-  const [linksVisible, setLinksVisible] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isTooltipVisible, setTooltipVisible] = useState(false);
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
-  const handleProfileClick = () => {
-    setLinksVisible(!linksVisible);
-  };
+  const openTooltip = () => setTooltipVisible(true);
+  const closeTooltip = () => setTooltipVisible(false);
 
   return (
     <div className="flex items-center space-x-4">
       <motion.div
-        whileHover={{ scale: 1.5 }}
+        onMouseEnter={openTooltip}
+        onMouseLeave={closeTooltip}
         className="relative"
-        onClick={handleProfileClick}
       >
         <FiUser size={24} color="#000" />
-        {linksVisible && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="absolute right-0 mt-2 w-48 bg-black shadow-lg overflow-hidden z-10"
-          >
-            <div className="px-4 py-2">
-              <Link
-               className="block text-white hover:text-gray-300 transition duration-300"
-              href="/login">
-                  Login
-             
-              </Link>
-              <Modal isOpen={isModalOpen} onClose={closeModal}
-              className='text-black'
-              >
 
-          Modal</Modal>
-            </div>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {isTooltipVisible && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="absolute right-0 mt-2 w-48 bg-orange-200 shadow-lg overflow-hidden z-10"
+            >
+              <div className="px-4 py-2 flex flex-col">
+                <Login />
+                <Register />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
