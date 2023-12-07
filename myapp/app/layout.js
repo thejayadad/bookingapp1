@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar/Navbar'
 import Footer from '@/components/Footer/Footer'
 import Modal from '@/components/Modal'
+import AuthProvider from '@/SessionProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,10 +16,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <AuthProvider>
         <Navbar />
         <Modal />
         {children}
         <Footer />
+        </AuthProvider>
         </body>
     </html>
   )

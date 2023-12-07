@@ -6,7 +6,7 @@ import AuthLinks from './AuthLinks'
 
 const Navbar = () => {
   return (
-    <header className='px-4 py-12 w-full bg-white z-10 shadow-sm'>
+    <header className='px-4 w-full bg-white z-10 shadow-sm'>
        <Box>
         <nav className='flex justify-between items-center'>
             <Logo size="125px"/>
