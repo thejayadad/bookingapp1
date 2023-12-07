@@ -3,9 +3,14 @@ import React, { useState } from 'react';
 import { FiUser } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Modal from '../Modal';
 
 const AuthLinks = () => {
   const [linksVisible, setLinksVisible] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   const handleProfileClick = () => {
     setLinksVisible(!linksVisible);
@@ -34,13 +39,11 @@ const AuthLinks = () => {
                   Login
              
               </Link>
-              <Link 
-              className="block text-white hover:text-gray-300 transition duration-300 mt-2"
+              <Modal isOpen={isModalOpen} onClose={closeModal}
+              className='text-black'
+              >
 
-              href="/register">
-                  Register
-            
-              </Link>
+          Modal</Modal>
             </div>
           </motion.div>
         )}
